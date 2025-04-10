@@ -1,15 +1,13 @@
-# spec/search_service_spec.rb
-
 require_relative '../lib/search_service'
 require_relative '../lib/client'
 
 RSpec.describe SearchService do
   before(:each) do
-    # Set up sample clients for testing.
+    
     @clients = [
       Client.new(id: 1, name: "John Doe", email: "john@example.com"),
       Client.new(id: 2, name: "Jane Doe", email: "jane@example.com"),
-      Client.new(id: 3, name: "Johnny Appleseed", email: "john@example.com"), # duplicate email test
+      Client.new(id: 3, name: "Johnny Appleseed", email: "john@example.com"), 
       Client.new(id: 4, name: "Alice Wonderland", email: "alice@example.com")
     ]
     @service = SearchService.new(@clients)
@@ -31,13 +29,11 @@ RSpec.describe SearchService do
   describe '#find_duplicate_emails' do
     it 'finds clients with duplicate emails' do
       duplicates = @service.find_duplicate_emails
-      # Since "john@example.com" appears twice, these two clients should be included.
       expect(duplicates.size).to eq(2)
       expect(duplicates.map(&:email).uniq.first.downcase).to eq("john@example.com")
     end
 
     it 'returns an empty array if no duplicate emails are found' do
-      # Create a service with clients that have unique emails.
       service_no_duplicates = SearchService.new([
         Client.new(id: 5, name: "Unique User", email: "unique@example.com")
       ])
