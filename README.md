@@ -31,3 +31,5 @@ These tests ensure that the Ruby logic behaves correctly and handles various edg
    ```bash
    git clone https://github.com/yourusername/ror-technical-challenge.git
    cd ror-technical-challenge
+2. Install dependencies: bundle install
+3. Run the tests: bundle exec rspec
